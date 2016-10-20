@@ -714,7 +714,7 @@ impl Config {
                 format!("{}-{}", target, gnu)
             } else if self.get_host() != target {
                 let cross_compile = self.getenv("CROSS_COMPILE");
-                let prefix = cross_compile.as_ref().map(String::as_str).or(match &target[..] {
+                let prefix = cross_compile.as_ref().map(|s| &s[..]).or(match &target[..] {
                     "aarch64-unknown-linux-gnu" => Some("aarch64-linux-gnu"),
                     "arm-unknown-linux-gnueabi" => Some("arm-linux-gnueabi"),
                     "arm-unknown-linux-gnueabihf"  => Some("arm-linux-gnueabihf"),
